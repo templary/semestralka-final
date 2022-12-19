@@ -8,7 +8,7 @@ jobs:
   Install:
     runs-on: ubuntu-latest
     steps:
-      - name: Code checkout
+      - name: Code checkout.
         uses: actions/checkout@v2.5.0
         with:
           token: ${{ secrets.WORKFLOW_TOKEN }}
@@ -47,7 +47,7 @@ jobs:
           npm rebuild node-sass --force
           npm run build -- --colors
       - name: Cache node modules and build folder
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: actions/cache@v3.0.11
         with:
           path: |
@@ -79,7 +79,7 @@ jobs:
           npm run test -- --colors
   Deploy:
     needs: [Build, Test]
-    if: ${{ github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
