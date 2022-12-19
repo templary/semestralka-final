@@ -47,7 +47,7 @@ jobs:
           npm rebuild node-sass --force
           npm run build -- --colors
       - name: Cache node modules and build folder
-        if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/master' }}
         uses: actions/cache@v3.0.11
         with:
           path: |
@@ -79,7 +79,7 @@ jobs:
           npm run test -- --colors
   Deploy:
     needs: [Build, Test]
-    if: ${{ github.ref == 'refs/heads/main' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     runs-on: ubuntu-latest
     steps:
       - name: Code checkout
